@@ -13,3 +13,4 @@ A stream where you switch for instance camera with screenshare and back without 
 ## Resource
 - https://discourse.mozilla.org/t/switch-stream-in-media-recorder/27619/3
 - https://stackoverflow.com/questions/59846230/mediarecorder-switch-video-tracks
+- https://webrtc.github.io/samples/src/content/peerconnection/pc1/

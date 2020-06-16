@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="WebRTC code samples">
+    <meta name="viewport" content="width=device-width, user-scalable=yes, initial-scale=1, maximum-scale=1">
+    <meta itemprop="description" content="Client-side WebRTC code samples">
+    <meta itemprop="name" content="WebRTC code samples">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta id="theme-color" name="theme-color" content="#ffffff">
+    <base target="_blank">
+    <title>Peer connection</title>
+    <link href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="css/main.css" />
+    <script src="js/ReplaceableMediaStream.js"></script>
+
+</head>
+
+<body>
+    <div id="container">
+        <video id="remoteVideo" playsinline autoplay muted></video>
+        <div class="box">
+            <button id="screenButton">Screen</button>
+            <button id="cameraButton">Camera</button>
+            <button id="recordStartButton">Start Record</button>
+            <button id="recordStopButton">Stop Record</button>
+            <button id="pipButton">PiP</button>
+        </div>
+    </div>
+    <script src="js/main.js" async></script>    
+</body>
+
+</html>
