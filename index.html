@@ -20,12 +20,13 @@
 <body>
     <div id="container" class="all">
         <h3><a href="https://github.com/meething/StreamSwitcher">Source code on Github</a></h3>
+        <h3 id="error" style="color: red;"></h3>
         <video id="localVideo" src="./video/big_buck_bunny.mp4" playsinline autoplay muted style="display: none;"></video>
         <video id="remoteVideo" playsinline autoplay controls></video>
         <div class="box">
-            <button id="videoButton">Video</button>
-            <button id="screenButton">Screen</button>
-            <button id="cameraButton">Camera</button>
+            <button id="videoButton" disabled>Video</button>
+            <button id="screenButton" disabled>Screen</button>
+            <button id="cameraButton"disabled>Camera</button>
             <br>
             <br>
             <button id="recordStartButton" disabled>Start Record</button>

@@ -14,6 +14,12 @@ recordStartButton.addEventListener('click', startRecord);
 recordStopButton.addEventListener('click', stopRecord);
 pipButton.addEventListener('click', requestPiP);
 
+if (!supported()) {
+  console.error("Browser does not support this functionality!")
+  document.getElementById("error").innerHTML = 'Browser not supported <a href="https://caniuse.com/#search=captureStream">Info</a>';
+} else {
+  enableStartButtons();
+}
 
 var mediaRecorder;
 var chunks = [];
@@ -54,6 +60,12 @@ async function enableButtons() {
   recordStartButton.disabled = false;
   recordStopButton.disabled = false;
   pipButton.disabled = false;
+}
+
+function enableStartButtons() {
+  screenButton.disabled = false;
+  videoButton.disabled = false;
+  cameraButton.disabled = false;
 }
 
 async function startRecord() {

@@ -16,6 +16,9 @@ async function init(debug) {
     };
 
     let silence = () => {
+        var AudioContext = window.AudioContext // Default
+            || window.webkitAudioContext // Safari and old versions of Chrome
+            || false;
         let ctx = new AudioContext(), oscillator = ctx.createOscillator();
         let dst = oscillator.connect(ctx.createMediaStreamDestination());
         oscillator.start();
@@ -192,13 +195,22 @@ async function init(debug) {
     function debugLog(debugstring) { }
 }
 
-MediaStream.prototype.constructor = init();
-
-MediaStream.prototype.replaceVideoTrack = function (track) {
-    this.videoSender.replaceTrack(track);
+function supported() {
+    if (HTMLVideoElement.prototype.captureStream)
+        return true;
+    else
+        return false;
 }
 
-MediaStream.prototype.replaceAudioTrack = function (track) {
-    this.audioSender.replaceTrack(track);
+if (supported()) {
+    MediaStream.prototype.constructor = init();
+
+    MediaStream.prototype.replaceVideoTrack = function (track) {
+        this.videoSender.replaceTrack(track);
+    }
+
+    MediaStream.prototype.replaceAudioTrack = function (track) {
+        this.audioSender.replaceTrack(track);
+    }
 }
 
