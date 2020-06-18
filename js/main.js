@@ -2,12 +2,14 @@
 
 const screenButton = document.getElementById('screenButton');
 const cameraButton = document.getElementById('cameraButton');
+const videoButton = document.getElementById('videoButton');
 const recordStartButton = document.getElementById('recordStartButton');
 const recordStopButton = document.getElementById('recordStopButton');
 const pipButton = document.getElementById('pipButton');
 
 screenButton.addEventListener('click', screen);
 cameraButton.addEventListener('click', camera);
+videoButton.addEventListener('click', video);
 recordStartButton.addEventListener('click', startRecord);
 recordStopButton.addEventListener('click', stopRecord);
 pipButton.addEventListener('click', requestPiP);
@@ -18,22 +20,40 @@ var chunks = [];
 
 const remoteVideo = document.getElementById('remoteVideo');
 var tempStream = new MediaStream();
-setTimeout(function () { 
-  remoteVideo.srcObject = tempStream.remoteStream; 
+setTimeout(function () {
+  remoteVideo.srcObject = tempStream.remoteStream;
   remoteVideo.play();
 }, 500);
 
+async function video() {
+  const video = document.getElementById("localVideo");
+  video.play();
+  const stream = video.captureStream();
+  console.log('Received local video stream');
+  stream.replaceVideoTrack(stream.getVideoTracks()[0])
+  stream.replaceAudioTrack(stream.getAudioTracks()[0])
+  enableButtons()
+}
 
 async function screen() {
   const stream = await navigator.mediaDevices.getDisplayMedia({ audio: true, video: true });
   console.log('Received local screen stream');
   stream.replaceVideoTrack(stream.getVideoTracks()[0])
+  enableButtons()
 }
 
 async function camera() {
-  const stream = await navigator.mediaDevices.getUserMedia({ audio: false, video: true });
+  const stream = await navigator.mediaDevices.getUserMedia({ audio: true, video: true });
   console.log('Received local screen stream');
   stream.replaceVideoTrack(stream.getVideoTracks()[0])
+  stream.replaceAudioTrack(stream.getAudioTracks()[0])
+  enableButtons()
+}
+
+async function enableButtons() {
+  recordStartButton.disabled = false;
+  recordStopButton.disabled = false;
+  pipButton.disabled = false;
 }
 
 async function startRecord() {
