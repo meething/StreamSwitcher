@@ -1,5 +1,7 @@
 # StreamSwitcher
-Allows MediaStream to switch tracks without setting srcObject this allows MediaRecording to continue recording
+Allows MediaStream to switch tracks without setting srcObject this allows MediaRecording to continue recording.
+
+## [Demo](https://meething.github.io/StreamSwitcher/)
 
 ## Problem
 The MediaRecorder is designed to stop recording when you switch streams during recording.
